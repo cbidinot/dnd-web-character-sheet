@@ -15,6 +15,7 @@ $mainBgColor: hsl(212deg 10% 20%);
 // Text styles
 @mixin buttons ($borderColor: $mainBgColor, $borderWidth: 4px, $buttonColor: white ) {
     margin: $borderWidth;
+    cursor: pointer;
     &:focus {
         margin: 0;
         border: $borderWidth solid $borderColor;
