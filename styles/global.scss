@@ -1,0 +1,15 @@
+@use './util.module.scss';
+
+:root {
+    font-family: util.$mainFont;
+}
+
+body {
+    margin: 0;
+    background-color: hsl(212deg 10% 20%);
+    color: white;
+    --webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga';
+}

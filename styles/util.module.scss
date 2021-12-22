@@ -1,0 +1,38 @@
+@use 'sass:color';
+@import url('https://fonts.googleapis.com/css2?family=Changa&display=swap');
+/* ================== UTIL VARIABLES ================= */
+
+// Fonts
+$mainFont: 'Changa', sans-serif;
+
+// Colors
+$mainColor: hsl(278deg, 40%, 40%);
+$secondaryColor: hsl(155deg, 40%, 35%);
+$mainBgColor: hsl(212deg 10% 20%);
+
+/* ================== UTIL MIXINS ================= */
+
+// Text styles
+@mixin buttons ($borderColor: $mainBgColor, $borderWidth: 4px, $buttonColor: white ) {
+    margin: $borderWidth;
+    &:focus {
+        margin: 0;
+        border: $borderWidth solid $borderColor;
+    }
+    &:hover {
+        margin: 0;
+        border: $borderWidth solid $borderColor;
+    }
+    &:active {
+        background-color: color.scale($buttonColor, $lightness: -25%);
+    }
+}
+
+/* ================== UTIL STYLES ================= */
+
+//Text styles
+.whiteH1 {
+    color: hsl(0deg, 0%, 100%);
+    font-size: 2.5em;
+    font-family: 'Changa';
+}

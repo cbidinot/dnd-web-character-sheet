@@ -1,0 +1,17 @@
+@use '../util.module.scss';
+
+.pageHeader {
+    width: 95vw;
+    padding: 0 2.5vw;
+    height: 10vh;
+    min-height: 80px;
+    background-color: util.$mainColor;
+    margin: 0;
+    box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.6);
+}
+
+.home {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
