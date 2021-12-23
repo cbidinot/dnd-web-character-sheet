@@ -1,0 +1,42 @@
+@use '../util.module.scss';
+
+
+.userSectionHeader {
+    display: flex;
+    height: 60%;
+    width: 50%;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+
+    span {
+    font-size: 1.8rem;
+    width: auto;
+    text-align: center;
+    }
+
+    .dropdown {
+        visibility: hidden;
+        transform: translateY(-100%);
+        position: absolute;
+        transform: translateX(-50%);
+        background-color: gray;
+    }
+
+    &:hover .dropdown {
+        visibility: visible;
+        transform: translateY(10vh);
+        transform: translateX(-50%);
+    }
+}
+
+.pfpContainer {
+    padding: 0 2%;
+    height: 100%;
+    aspect-ratio: 1/1;
+
+
+    img {
+        border-radius: 100%;
+    }
+}

@@ -19,10 +19,12 @@ $mainBgColor: hsl(212deg 10% 20%);
     &:focus {
         margin: 0;
         border: $borderWidth solid $borderColor;
+        border-radius: 2.5%;
     }
     &:hover {
         margin: 0;
         border: $borderWidth solid $borderColor;
+        border-radius: 2.5%;
     }
     &:active {
         background-color: color.scale($buttonColor, $lightness: -25%);
@@ -34,6 +36,6 @@ $mainBgColor: hsl(212deg 10% 20%);
 //Text styles
 .whiteH1 {
     color: hsl(0deg, 0%, 100%);
-    font-size: 2.5em;
+    font-size: 2.5rem;
     font-family: 'Changa';
 }
