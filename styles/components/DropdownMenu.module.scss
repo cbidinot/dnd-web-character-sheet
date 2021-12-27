@@ -1,0 +1,27 @@
+@use '../util.module.scss';
+
+.dropdown {
+    display: flex;
+    position: absolute;
+    height: auto;
+    width: 20vw;
+    background-color: lighten(util.$mainBgColor, 10%);
+    box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.6);
+    border-radius: 0 0 10px 10px / 0 0 10px 10px;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    transition: all 0.3s linear;
+    margin: 0 2.5vw;
+    
+}
+
+.active {
+    visibility: visible;
+    top: 10vh;
+}
+
+.unactive {
+    visibility: hidden;
+    transform: translateY(0);
+}

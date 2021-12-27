@@ -1,0 +1,31 @@
+@use '../util.module.scss';
+@use 'sass:color';
+
+.pageHeader {
+    width: 97.5vw;
+    padding-left: 2.5vw;
+    height: 10vh;
+    min-height: 80px;
+    background: util.$mainColor;
+    margin: 0;
+    box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.6);
+    z-index: 2;
+    position: relative;
+
+    h1 {
+        text-shadow: 0 0 20px darken(util.$mainColor, 20%);
+    }
+
+    img {
+        height: 80%;
+        margin-right: 1vw;
+        color: white;
+
+    }
+}
+
+.home {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

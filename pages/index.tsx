@@ -2,9 +2,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { auth } from '../lib/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import styles from '../styles/util.module.scss';
-import PageHeader from '../components/PageHeader';
-import UserSectionHeader from '../containers/UserSectionHeader';
+import PageHeader from '../containers/PageHeader';
 
 //TEMPORARY 
 import SignOut from '../components/SignOut';
@@ -16,13 +14,10 @@ export default function Home() {
     return (
         <>
             <Head>
-                <title>DND</title>
+                <title>DnD Web Sheet | Home</title>
             </Head>
 
-            <PageHeader type='home'>
-                <h1 className={styles.whiteH1}>D&D Web Sheet</h1>
-                <UserSectionHeader/>
-            </PageHeader>
+            <PageHeader type='home'/>
             
             <h1>Home</h1>
             <SignOut/>

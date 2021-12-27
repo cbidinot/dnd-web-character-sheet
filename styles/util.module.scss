@@ -13,18 +13,15 @@ $mainBgColor: hsl(212deg 10% 20%);
 /* ================== UTIL MIXINS ================= */
 
 // Text styles
-@mixin buttons ($borderColor: $mainBgColor, $borderWidth: 4px, $buttonColor: white ) {
-    margin: $borderWidth;
+@mixin buttons ($borderColor: $mainBgColor, $outlineWidth: 4px, $buttonColor: white ) {
+    
     cursor: pointer;
     &:focus {
-        margin: 0;
-        border: $borderWidth solid $borderColor;
-        border-radius: 2.5%;
+        outline: $outlineWidth solid $borderColor;
     }
     &:hover {
-        margin: 0;
-        border: $borderWidth solid $borderColor;
-        border-radius: 2.5%;
+       
+        outline: $outlineWidth solid $borderColor;
     }
     &:active {
         background-color: color.scale($buttonColor, $lightness: -25%);
@@ -38,4 +35,12 @@ $mainBgColor: hsl(212deg 10% 20%);
     color: hsl(0deg, 0%, 100%);
     font-size: 2.5rem;
     font-family: 'Changa';
+}
+
+.standardFlex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: auto;  
 }

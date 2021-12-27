@@ -1,13 +1,16 @@
-import styles from '../styles/containers/UserSectionHeader.module.scss';
+import styles from '../styles/components/DropdownMenu.module.scss';
+import SignOut from "../components/SignOut";
 
-export default function DropdownMenu() {
+const DropdownMenu: React.FC<{active: boolean}> = (props) => {
 
     return (
-        <div className={styles.dropdown}>
+        <div className={`${styles.dropdown} ${props.active ? styles.active : styles.unactive}`}>
             <ul>
                 <li>Dashboard</li>
-                <li>Sign Out</li>
+                <SignOut/>
             </ul>
         </div>
     );
 }
+
+export default DropdownMenu;
