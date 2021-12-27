@@ -3,7 +3,7 @@ import { auth } from "../lib/firebase";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import PageHeader from "../containers/PageHeader";
-import UserSectionHeader from "../containers/UserSectionHeader";
+import UserSectionHeader from "../components/UserSectionHeader";
 import styles from '../styles/util.module.scss';
 import { fetchCharacters } from "../lib/dashboard";
 
