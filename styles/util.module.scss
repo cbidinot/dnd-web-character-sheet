@@ -9,6 +9,7 @@ $mainFont: 'Changa', sans-serif;
 $mainColor: hsl(278deg, 40%, 40%);
 $secondaryColor: hsl(155deg, 40%, 35%);
 $mainBgColor: hsl(212deg 10% 20%);
+$warningRed: hsl(0, 60%, 50%);
 
 /* ================== UTIL MIXINS ================= */
 
@@ -27,6 +28,19 @@ $mainBgColor: hsl(212deg 10% 20%);
         background-color: color.scale($buttonColor, $lightness: -25%);
     }
 }
+
+@mixin textButton ($highlightColor: color.scale($secondaryColor, $lightness: 25%)) {
+    cursor: pointer;
+    &:focus-within {
+        color: $highlightColor;
+    }
+    &:hover {
+        color: $highlightColor;
+    }
+    &:active {
+        color: color.scale($highlightColor, $lightness: 50%);
+    }
+};
 
 /* ================== UTIL STYLES ================= */
 

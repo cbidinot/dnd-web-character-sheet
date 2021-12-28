@@ -25,10 +25,7 @@ export default function Dashboard() {
     } else {
         return (
             <>
-                <PageHeader type='home'>
-                    <h1 className={styles.whiteH1}>D&D Web Sheet</h1>
-                    <UserSectionHeader/>
-                </PageHeader>
+                <PageHeader type='home'/>
                 <img src={user?.photoURL ? user.photoURL : pfp} style={{width: "100px", height: "100px"}}/>
                 <h1>Hello {user?.displayName}</h1>
                 <button onClick={() => { if(user)fetchCharacters(user.uid)}}>TEST FETCH</button>

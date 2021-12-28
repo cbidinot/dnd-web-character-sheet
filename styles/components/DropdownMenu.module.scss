@@ -1,4 +1,6 @@
 @use '../util.module.scss';
+@use 'sass:color';
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 
 .dropdown {
     display: flex;
@@ -12,6 +14,18 @@
     z-index: 1;
     transition: all 0.3s linear;
 
+    .dashboardLink {
+        @include util.textButton();
+
+        &::marker {
+            content: 'account_box';
+            font-family: 'Material Icons'; 
+        }
+    }
+
+    a {
+        all: unset;
+    }
     
 }
 

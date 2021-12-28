@@ -1,0 +1,16 @@
+@use '../util.module.scss';
+@use 'sass:color';
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+
+.signOut {
+    @include util.textButton(color.scale(util.$warningRed, $lightness: 25%));
+
+    &::marker {
+        content: 'logout';
+        font-family: 'Material Icons';
+        font-size: 90%;
+        font-weight: bold;
+        margin: 10%;
+        margin-top: 50%;
+    }
+}
