@@ -6,17 +6,19 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../lib/firebase';
 import SignIn from '../components/SignIn';
 import Link from 'next/link';
+import { handleTabToClick } from '../lib/util';
 
 
 const PageHeader: React.FC<{type: string}> = props => {
 
     const [ userSectionWidth, setUserSectionWidth ] = useState<number>(0);
     const [ user ] = useAuthState(auth);
-    const [ dropdown, setDropdown ] = useState(false);
+    const [ uSdropdown, setDropdown ] = useState(false);
     const [ dropdownFocus, setDropdownFocus ] = useState(false);
+    const [ dropdownActive, setDropdownActive ] = useState(false);
 
-    const toggleDropdown = () => {
-        setDropdown(!dropdown);
+    const toggleUSDropdown = () => {
+        setDropdown(!uSdropdown);
     };
 
     const toggleDropdownFocus = () => {
@@ -26,16 +28,16 @@ const PageHeader: React.FC<{type: string}> = props => {
     return (
         <header className={`${styles.pageHeader} ${styles[props.type]}`}>
             <Link href='/'>
-               <div className={`${styles.standardFlex} ${styles.logo}`} tabIndex={0} >
+               <a className={styles.logo} >
                     <img src='./vectors/dice-d20.svg' alt='Logo' />
                     <h1 className={styles.whiteH1}>DnD Web Sheet</h1> 
-                </div> 
+                </a> 
             </Link>
             
 
             { user ? (<>
-                <UserSectionHeader toggleDropdown={toggleDropdown} setUserSectionWidth={setUserSectionWidth} toggleDropdownFocus={toggleDropdownFocus} />
-                <DropdownMenu active={dropdown} width={userSectionWidth} activeFocus={dropdownFocus} />
+                <UserSectionHeader toggleDropdown={toggleUSDropdown} setUserSectionWidth={setUserSectionWidth} toggleDropdownFocus={toggleDropdownFocus} dropdownActive={dropdownActive} />
+                <DropdownMenu uSActive={uSdropdown} width={userSectionWidth} activeFocus={dropdownFocus} setDropdownActive={setDropdownActive} dropdownActive={dropdownActive} />
             </>) : <SignIn/> }
             
         </header>

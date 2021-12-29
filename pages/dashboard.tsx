@@ -28,7 +28,7 @@ export default function Dashboard() {
                 <PageHeader type='home'/>
                 <img src={user?.photoURL ? user.photoURL : pfp} style={{width: "100px", height: "100px"}}/>
                 <h1>Hello {user?.displayName}</h1>
-                <button onClick={() => { if(user)fetchCharacters(user.uid)}}>TEST FETCH</button>
+                <button onClick={ async () => { if(user) await fetchCharacters(user.uid) }}>TEST FETCH</button>
             </>
         );
     }

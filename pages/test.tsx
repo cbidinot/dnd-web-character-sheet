@@ -5,6 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../lib/firebase";
 import { useEffect, useState } from "react";
 import { initCharacter } from "../lib/buildingSheets";
+import { handleTabToClick } from "../lib/util";
 
 export default function Test() {
     const router = useRouter();
@@ -27,6 +28,8 @@ export default function Test() {
  
     }
 
+
+
     const [character, setCharacter] = useState<any>({});
 
     if(loading) {
@@ -37,7 +40,9 @@ export default function Test() {
                 <h1>Test</h1>
                 <button onClick={getDummySheet}>getDummySheet</button>
                 <button onClick={() => {initCharacter(user.uid); setCharacter({race: 'elf'});}}>Create Jonas</button>
-                <input type='text' value={character.alignment} onChange={(e) => {setCharacter({...character, alignment: e.target.value}); console.log(character)}}></input> 
+                <input type='text' value={character.alignment} onChange={(e) => {setCharacter({...character, alignment: e.target.value}); console.log(character)}}></input>
+
+                <h1 tabIndex={0} onKeyPress={handleTabToClick} onClick={() => {console.log('test')}} >test</h1> 
             </>
         );
     }

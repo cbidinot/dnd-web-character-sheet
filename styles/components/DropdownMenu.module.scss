@@ -13,28 +13,32 @@
     top: 0;
     z-index: 1;
     transition: all 0.3s linear;
+    font-size: 1.2rem;
+
 
     .dashboardLink {
         @include util.textButton();
-
-        &::marker {
+        all: unset;
+        cursor: pointer;
+        li::before {
             content: 'account_box';
-            font-family: 'Material Icons'; 
+            font-family: 'Material Icons';
+            position: absolute;
+            left: 1rem;
+            top: 1.6rem;
+        }
+        li::marker {
+            content: none;
         }
     }
-
-    a {
-        all: unset;
-    }
-    
 }
 
 .active {
     visibility: visible;
-    top: 10vh;
+    transform: translateY(10vh);
 }
 
 .unactive {
     visibility: hidden;
-    transform: translateY(0);
+    transform: translateY(-2vh);
 }
