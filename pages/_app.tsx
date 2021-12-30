@@ -1,5 +1,6 @@
 import { AppProps } from "next/app";
 import Head from "next/head";
+import Layout from "../containers/Layout";
 import {  } from '../lib/firebase';
 import '../styles/global.scss';
 
@@ -10,7 +11,11 @@ export default function App({ Component, pageProps }: AppProps) {
             <Head>
                 <title>DnD</title>
             </Head>
-           <Component {...pageProps} /> 
+            
+            <Layout>
+                <Component {...pageProps} />    
+            </Layout>
+            
         </>
     );
 };

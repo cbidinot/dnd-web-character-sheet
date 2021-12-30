@@ -6,10 +6,9 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../lib/firebase';
 import SignIn from '../components/SignIn';
 import Link from 'next/link';
-import { handleTabToClick } from '../lib/util';
 
 
-const PageHeader: React.FC<{type: string}> = props => {
+const PageHeader: React.FC<{}> = props => {
 
     const [ userSectionWidth, setUserSectionWidth ] = useState<number>(0);
     const [ user ] = useAuthState(auth);
@@ -26,7 +25,7 @@ const PageHeader: React.FC<{type: string}> = props => {
     };
 
     return (
-        <header className={`${styles.pageHeader} ${styles[props.type]}`}>
+        <header className={styles.pageHeader}>
             <Link href='/'>
                <a className={styles.logo} >
                     <img src='./vectors/dice-d20.svg' alt='Logo' />

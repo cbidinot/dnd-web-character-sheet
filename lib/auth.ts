@@ -1,5 +1,6 @@
 import { auth } from "./firebase";
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
+import { useRouter } from "next/router";
 
 /**
  * Signs user in with GoogleAuthProvider
@@ -13,5 +14,6 @@ export const signInWithGooglePopup = () => {
  * Signs out the user
  */
 export const signOutFunc = () => {
+    
     signOut(auth);
 }
