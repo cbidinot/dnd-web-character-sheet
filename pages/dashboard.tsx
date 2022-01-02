@@ -1,23 +1,15 @@
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../lib/firebase";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 import { checkCache } from "../lib/userCharactersFetching";
+import { useAuthRequeriment } from "../lib/auth";
 
 export default function Dashboard() {
     //TEMPORARY, DELETE ME
     const pfp = './pfp.png';
 
     const router = useRouter();
-    const [user, loading] = useAuthState(auth);
-    //Checks if user is authenticated, if not, redirects to login
-    useEffect(() => {
-        if(!(user || loading)) {
-            router.push('./login');
-        };
-    }, [user, loading]);
-
-    if(loading) {
+    const [user, loading] = useAuthRequeriment();
+    
+    if(loading || !user ) {
         return <h1>loading...</h1>;
     } else {
         return (

@@ -1,5 +1,8 @@
-import { db } from "./firebase";
-import { collection, query, where, getDocsFromCache, getDocsFromServer } from 'firebase/firestore';
+import { auth, db } from "./firebase";
+import { collection, query, where, getDocsFromCache, getDocsFromServer, DocumentData } from 'firebase/firestore';
+import { User } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 /**
  * Queries the database for all character sheet documents belonging to the logged-in user.
@@ -39,4 +42,32 @@ export const checkCache = async (uid: string) => {
     }
     
 
+};
+
+/**
+ * Fetches all characters belonging to the user from the cache if available, otherwise fetches from the database.
+ * 
+ * @returns Array with another array containting all the character data and their ids as well as a loading indicator boolean
+ */
+export const useInitialUserFetch = (): [(string | DocumentData)[][], boolean] => {
+
+    const [user] = useAuthState(auth);
+    const [ allCharacters, setAllCharacters ] = useState<(string | DocumentData)[][]>([]);
+    const [ isLoaded, setIsLoaded ] = useState(false);
+
+    useEffect(() => {
+        if(user) {
+            checkCache(user.uid)
+                .then((data) => {
+                    setAllCharacters(data);
+                    setIsLoaded(true);
+                })
+                .catch((error) => {
+                    console.error(error);
+                    window.alert(error);
+                })
+        };
+    }, [user]);
+    
+    return [ allCharacters, isLoaded ];
 };
