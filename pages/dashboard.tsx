@@ -2,10 +2,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../lib/firebase";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import PageHeader from "../containers/PageHeader";
-import UserSectionHeader from "../components/UserSectionHeader";
-import styles from '../styles/util.module.scss';
-import { fetchCharacters } from "../lib/dashboard";
+import { checkCache } from "../lib/userCharactersFetching";
 
 export default function Dashboard() {
     //TEMPORARY, DELETE ME
@@ -27,7 +24,7 @@ export default function Dashboard() {
             <>
                 <img src={user?.photoURL ? user.photoURL : pfp} style={{width: "100px", height: "100px"}}/>
                 <h1>Hello {user?.displayName}</h1>
-                <button onClick={ async () => { if(user) await fetchCharacters(user.uid) }}>TEST FETCH</button>
+                <button onClick={ async () => { if(user) await checkCache(user.uid) }}>TEST FETCH</button>
             </>
         );
     }

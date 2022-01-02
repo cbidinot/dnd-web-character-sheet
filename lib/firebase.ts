@@ -1,7 +1,7 @@
 import { initializeApp, getApps } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getAnalytics, initializeAnalytics } from "firebase/analytics";
 
-import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
+import { connectFirestoreEmulator, getFirestore, enableMultiTabIndexedDbPersistence } from "firebase/firestore";
 import { connectAuthEmulator, getAuth } from "firebase/auth";
 
 const firebaseConfig = {
@@ -26,7 +26,15 @@ if(location.hostname === 'localhost') {
   console.log("Connecting emulator for Firestore");
   connectAuthEmulator(auth, 'http://localhost:9099');
   console.log("Connecting emulator for Authentication");
-}
+} 
 
+enableMultiTabIndexedDbPersistence(db)
+  .catch((error) => {
+    if(error.code =='failed-precondition') {
+      window.alert(error.code)
 
-
+    } else if(error.code == 'unimplemented') {
+      window.alert(`Your browser does not support the features required to run this app. Code: ${error.code}`,)
+    };
+    window.location.replace(`${window.location.hostname}/unsupported`)
+  });
