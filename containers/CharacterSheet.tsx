@@ -1,13 +1,14 @@
 import { DocumentData } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { initialFetch, updateDatabase } from "../lib/characterSheet";
+import { initialFetch, updateDatabase, useUpdate } from "../lib/characterSheet";
 
 
 const CharacterSheet: React.FC<{ characterId: string }> = props => {
 
     const [ data, setData ] = useState<DocumentData>();
     const [ isLoaded, setIsLoaded ] = useState(false);
-    const [ stagedChanges, setStagedChanges ] = useState({});
+
+    const addChanges = useUpdate(props.characterId);
 
     // Initially fetches the character data from the most up-to-date source
     useEffect(() => {
@@ -21,12 +22,7 @@ const CharacterSheet: React.FC<{ characterId: string }> = props => {
                 window.alert(err.message);
             })
     }, []);
-
-    useEffect(() => {
-        console.log(stagedChanges, data)
-    }, [stagedChanges]);
-
-
+    
     return (<>
         { !isLoaded && <h1>Loading...</h1> }
         { isLoaded && data && 
@@ -35,7 +31,7 @@ const CharacterSheet: React.FC<{ characterId: string }> = props => {
                     { Object.entries(data).map(([key, value]) => <li>{key}</li>) }
                 </ul>
                 <h3>{data.name}</h3>
-                <input type='text' onChange={(e) => {setData({...data, name: e.target.value }); setStagedChanges({...stagedChanges, name: e.target.value });}} />
+                <input type='text' onChange={(e) => {setData({...data, name: e.target.value }); addChanges(e.target.value);}} />
             </>
         }
         { isLoaded && !data && <h1>An error occurred, try again later</h1> }

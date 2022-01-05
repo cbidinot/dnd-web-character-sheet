@@ -34,7 +34,6 @@ export const useAuthRequeriment = (): [(User | null | undefined), boolean] => {
         if(!(user || loading)) {
             router.push('./login');
         };
-        console.log()
     }, [user, loading]);
 
     return [ user, loading ];
