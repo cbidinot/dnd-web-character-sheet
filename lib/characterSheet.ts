@@ -1,46 +1,65 @@
+import { FirebaseError } from "firebase/app";
 import { doc, DocumentData, getDoc, updateDoc } from "firebase/firestore";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { db } from "./firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, db } from "./firebase";
 
+export const useActiveSheet = (): [ DocumentData | undefined, boolean, string | undefined, (key: string, change: any) => void ] => {
 
-export const initialFetch = async (id: string) => {
+    const router = useRouter();
+    const [ user, loading ] = useAuthState(auth);
+    const [ data, setData ] = useState<DocumentData>();
+    const [ isLoaded, setIsLoaded ] = useState(false);
+    const [ characterId, setCharacterId ] = useState<string>();
+    const [ exception, setException ] = useState<string>();
+    const [ timer, setTimer ] = useState(false);
+    const [ prevData, setPrevData ] = useState<DocumentData>();
 
-    const ref = doc(db, 'characters', id);
+    //Checks if a query parameter was specified, if yes, sets state accordingly
+    useEffect(() => {
+        if(typeof router.query.id == 'string') {
+            setCharacterId(router.query.id);
 
-    try { 
-        const snapshot = await getDoc(ref);
-        return snapshot.data();
-    } catch (e) {
-        throw e;
-    }
+        } else if(user) setException('missing query');
+    }, [router.query]);
 
-};
-
-export const updateDatabase = async (id: string, updatedDoc: {}) => {
-
-    const ref = doc(db, 'characters', id);
-    console.log({updatedDoc});
-
-    try { 
-        updateDoc(ref, updatedDoc);
-    } catch (e) {
-        console.log(e)
+    const updateData = (key: string, change: any) => {
+        setData({...data, [key]: change})
     };
-};
-
-export const useUpdate = (id: string) => {
-
-    const [pendingChanges, setPendingChanges] = useState({});
-    const [timer, setTimer] = useState(false);
 
     useEffect(() => {
-        const unsub = setTimeout(() => {
-            updateDatabase(id, pendingChanges);
-            setPendingChanges({});
-            console.count('timer');
-            setTimer(!timer);
-        }, 3000);
+        if(user && characterId && !loading ) {
+            const ref = doc(db, 'characters', characterId);
+
+            getDoc(ref)
+                .then((snap) => {setData(snap.data()); setPrevData(snap.data()); setIsLoaded(true);})
+                .catch((error: FirebaseError) => {
+                    if(error.code == 'permission-denied') {
+                        setException(error.code)
+                        window.alert("Permission denied: character does not exist or you don't have the right permissions to access it");
+                    } else {
+                        console.error(error);
+                        window.alert(error.message);
+                    }
+                });
+        }
+    }, [user, characterId]);
+
+    useEffect(() => {
+        
+        const clock = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if((user && characterId) && prevData != data) {
+                    const ref = doc(db, 'characters', characterId);
+                    setPrevData(data);
+                    updateDoc(ref, data);
+                }
+                setTimer(!timer);
+            }, 5000)
+        })
     }, [timer])
 
-    return (change: any) => {setPendingChanges({...pendingChanges, change})};
+    return [ data, isLoaded, exception, updateData ];
+
 };

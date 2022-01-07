@@ -18,34 +18,34 @@
 
 
     span {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     width: auto;    
     height: auto;
     text-align: center;
     }
 
-    img {
+    .pfp {
         margin: 0.5rem;
         height: 70%;
         aspect-ratio: 1/1;
         border-radius: 100%;
     }
 
-    .menuArrow {
-        margin: 0;
-        border-radius: 0;
-        height: 30%;
-        margin: 0.5rem;
+    &::before {
+        content: url('/vectors/arrow.svg');
+        height: 25%;
         transition: all 0.3s linear;
+        position: relative;
+        right: .5rem
     }
 
 }
 
-.arrowActive {
+.arrowActive::before {
     transform: rotate(90deg);
 }
 
-.arrowUnactive {
+.arrowUnactive::before {
     transform: rotate(0);
 }
 

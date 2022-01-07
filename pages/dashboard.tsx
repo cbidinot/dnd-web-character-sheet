@@ -1,22 +1,22 @@
-import { useRouter } from "next/router";
-import { checkCache } from "../lib/userCharactersFetching";
+import {useAllCharactersFetch } from "../lib/userCharactersFetching";
 import { useAuthRequeriment } from "../lib/auth";
 
 export default function Dashboard() {
     //TEMPORARY, DELETE ME
     const pfp = './pfp.png';
 
-    const router = useRouter();
+
+    const [ allCharacters, isLoaded ] = useAllCharactersFetch();
+
     const [user, loading] = useAuthRequeriment();
     
     if(loading || !user ) {
         return <h1>loading...</h1>;
     } else {
         return (
-            <>
+            <>  
                 <img src={user?.photoURL ? user.photoURL : pfp} style={{width: "100px", height: "100px"}}/>
                 <h1>Hello {user?.displayName}</h1>
-                <button onClick={ async () => { if(user) await checkCache(user.uid) }}>TEST FETCH</button>
             </>
         );
     }

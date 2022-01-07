@@ -1,4 +1,4 @@
-import { doc, getDoc } from "firebase/firestore"
+import { doc, FirestoreErrorCode, getDoc } from "firebase/firestore"
 import { db } from "../lib/firebase"
 import { useRouter } from "next/router";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -6,6 +6,7 @@ import { auth } from "../lib/firebase";
 import { useEffect, useState } from "react";
 import { initCharacter } from "../lib/buildingSheets";
 import { handleTabToClick } from "../lib/util";
+import { FirebaseError } from "firebase/app";
 
 export default function Test() {
     const router = useRouter();
@@ -19,12 +20,17 @@ export default function Test() {
     
     //Test function
     const getDummySheet = async () => {
-        const dummySheet = doc(db, '/characters/rangery');
-        const snapshot = await getDoc(dummySheet);
-        if(snapshot.exists()) {
-            const rangery = snapshot.data();
-            console.log(rangery);
+        try {
+            const dummySheet = doc(db, '/characters/lolllo');
+            const snapshot = await getDoc(dummySheet);
+            if(snapshot.exists()) {
+                const rangery = snapshot.data();
+                console.log(rangery);
+            }   
+        } catch(err: any) {
+            console.log({err})
         }
+        
  
     }
 
@@ -42,7 +48,7 @@ export default function Test() {
                 <button onClick={() => {initCharacter(user.uid); setCharacter({race: 'elf'});}}>Create Jonas</button>
                 <input type='text' value={character.alignment} onChange={(e) => {setCharacter({...character, alignment: e.target.value}); console.log(character)}}></input>
 
-                <h1 tabIndex={0} onKeyPress={handleTabToClick} onClick={() => {console.log('test')}} >test</h1> 
+                <h1 tabIndex={0} onKeyPress={handleTabToClick} onClick={() => {console.log('test')}} >test</h1>
             </>
         );
     }

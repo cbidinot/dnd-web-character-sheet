@@ -1,36 +1,23 @@
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import CharacterSheet from "../containers/CharacterSheet";
 import { useAuthRequeriment } from "../lib/auth";
-import { useInitialUserFetch } from "../lib/userCharactersFetching"; 
-
+import { useActiveSheet } from "../lib/characterSheet";
 
 export default function MyCharacters() {
 
-    const [user, loading] = useAuthRequeriment();
-    const router = useRouter();
-    const [ characterId, setCharacterId ] = useState<string>();
-
-    const [ allCharacters, isLoaded ] = useInitialUserFetch();
-    
-    //Checks if a query parameter was specified, if yes, sets state accordingly
-    useEffect(() => {
-        if( typeof router.query.id == 'string' ) {
-          setCharacterId(router.query.id)  
-        }
-    }, [router.query])
+    const [ user, loading ] = useAuthRequeriment();
+    const [ data, isLoaded, exception, updateData ] = useActiveSheet();
 
     if(loading || !user ) {
         return <h1>Loading...</h1>
     } else return (
         <>
-            { !isLoaded && <h1>Loading...</h1> }
-            { isLoaded && <>
-                { !characterId && <h1>no query</h1> }
-                { characterId && allCharacters?.some((array) => array.includes(characterId)) && 
-                    <CharacterSheet characterId={characterId} /> }
-                { characterId && !allCharacters?.some((array) => array.includes(characterId)) && <h1>not found</h1> }
-                { !allCharacters && <h1>An error occurred, try again later</h1> }
+            { (!isLoaded || !data) && !exception && <h1>Loading...</h1> }
+            { exception == 'permission-denied' && <h1>permission denied</h1>}
+            { exception == 'missing query' && <h1>missing query</h1>}
+            { isLoaded && data && <>
+                <h1>{data.name}</h1>
+                <h1>{data.race}</h1>
+                <input type='text' value={data.race} onChange={(e) => {updateData('race', e.target.value)}} ></input>
             </> }
         </>
     );
