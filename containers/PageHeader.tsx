@@ -28,7 +28,7 @@ const PageHeader: React.FC<{}> = props => {
         <header className={styles.pageHeader}>
             <Link href='/'>
                <a className={styles.logo} >
-                    <img src='./vectors/dice-d20.svg' alt='Logo' />
+                    <img src='/vectors/dice-d20.svg' alt='Logo' />
                     <h1 className={styles.whiteH1}>DnD Web Sheet</h1> 
                 </a> 
             </Link>

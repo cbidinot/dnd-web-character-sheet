@@ -1,0 +1,44 @@
+@use './editorUtil.module.scss';
+@use '../util.module.scss';
+@use 'sass:color';
+
+.inputModule {
+    @include editorUtil.defaultInputModule;
+    
+
+    input {
+        @include editorUtil.defaultInputBox;
+        
+    }
+}
+
+#singleNumber {
+    input {
+        width: 3rem;
+        box-sizing: content-box;
+    }
+}
+
+.characterCard {
+    background-color: hsla(0deg, 0%, 0%, 20%);
+    margin: .25rem;
+    margin-bottom: .5rem;
+    padding: 0 .25rem .25rem;
+    box-sizing: border-box;
+    position: relative;
+    outline: hsla(0deg, 0%, 0%, 30%) solid 2px;
+    
+}
+.delete {
+        $color: color.scale(util.$warningRed, $lightness: -20%);
+        all: unset;
+        @include util.buttons(color.scale($color, $lightness: -50%), 3px, $color);
+        text-align: center;
+        background-color: $color;
+        width: 3rem;
+        height: 2rem;
+        display: inline;
+        position: absolute;
+        inset: auto 0 0 auto;
+
+    }

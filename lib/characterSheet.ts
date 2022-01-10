@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "./firebase";
 
-export const useActiveSheet = (): [ DocumentData | undefined, boolean, string | undefined, (key: string, change: any) => void ] => {
+export const useActiveSheet = (): [ DocumentData | undefined, boolean, string | undefined, (key: string, change: any) => void, () => boolean ] => {
 
     const router = useRouter();
     const [ user, loading ] = useAuthState(auth);
@@ -22,7 +22,7 @@ export const useActiveSheet = (): [ DocumentData | undefined, boolean, string | 
             setCharacterId(router.query.id);
 
         } else if(user) setException('missing query');
-    }, [router.query]);
+    }, [router.query, user]);
 
     const updateData = (key: string, change: any) => {
         setData({...data, [key]: change})
@@ -58,8 +58,17 @@ export const useActiveSheet = (): [ DocumentData | undefined, boolean, string | 
                 setTimer(!timer);
             }, 5000)
         })
-    }, [timer])
+    }, [timer]);
 
-    return [ data, isLoaded, exception, updateData ];
+    const manualUpdate = () => {
+        if((user && characterId) && prevData != data) {
+            const ref = doc(db, 'characters', characterId);
+            setPrevData(data);
+            updateDoc(ref, data);
+            return true;
+        } else return false;
+    };
+
+    return [ data, isLoaded, exception, updateData, manualUpdate ];
 
 };

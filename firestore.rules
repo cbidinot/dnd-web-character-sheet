@@ -4,7 +4,7 @@ service cloud.firestore {
     match /characters/{characterId} {
       allow read: if request.auth.uid == resource.data.uid;
 
-      allow write: if request.auth.uid == resource.data.uid &&
+      allow write: if request.auth.uid == resource.data.uid ||
         request.auth.uid == request.resource.data.uid &&
         request.resource.data.name != null;
     }

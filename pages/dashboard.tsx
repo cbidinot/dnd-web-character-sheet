@@ -1,5 +1,6 @@
 import {useAllCharactersFetch } from "../lib/userCharactersFetching";
 import { useAuthRequeriment } from "../lib/auth";
+import Link from "next/link";
 
 export default function Dashboard() {
     //TEMPORARY, DELETE ME
@@ -17,6 +18,7 @@ export default function Dashboard() {
             <>  
                 <img src={user?.photoURL ? user.photoURL : pfp} style={{width: "100px", height: "100px"}}/>
                 <h1>Hello {user?.displayName}</h1>
+                <Link href='/characters/new'><a>maek</a></Link>
             </>
         );
     }

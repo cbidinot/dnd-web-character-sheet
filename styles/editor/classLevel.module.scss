@@ -1,0 +1,60 @@
+@use './editorUtil.module.scss';
+@use '../util.module.scss';
+@use 'sass:color';
+
+$color: color.scale(util.$mainColor, $lightness: -5%);
+
+.classLevel {
+    @include editorUtil.halfWidthFlexBlock($color);
+    margin-bottom: 5rem;
+
+    .header {
+        @include editorUtil.blockHeader($color)
+    }
+
+    
+}
+
+.inputModule {
+    @include editorUtil.defaultInputModule;
+
+    input {
+        @include editorUtil.defaultInputBox;
+    }
+}
+
+#singleNumber {
+    input {
+        width: 3rem;
+        box-sizing: content-box;
+    }
+}
+
+.checkmarkSelectors {
+    @include editorUtil.defaultInputModule;
+    display: flex;
+    input {
+        cursor: pointer;
+        width: 1rem;
+        height: 1rem;
+        margin-right: 2rem;
+    }
+}
+
+.multiclassContainer {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.addClass {
+    $color: util.$secondaryColor;
+    all: unset;
+    text-align: center;
+    background-color: $color;
+    @include util.buttons(color.scale($color, $lightness: 10%), 3px, $color);
+    display: block;
+    font-size: 1.3rem;
+    width: 60%;
+    margin: .5rem 20%;
+}

@@ -45,7 +45,6 @@ export default function Test() {
             <>
                 <h1>Test</h1>
                 <button onClick={getDummySheet}>getDummySheet</button>
-                <button onClick={() => {initCharacter(user.uid); setCharacter({race: 'elf'});}}>Create Jonas</button>
                 <input type='text' value={character.alignment} onChange={(e) => {setCharacter({...character, alignment: e.target.value}); console.log(character)}}></input>
 
                 <h1 tabIndex={0} onKeyPress={handleTabToClick} onClick={() => {console.log('test')}} >test</h1>

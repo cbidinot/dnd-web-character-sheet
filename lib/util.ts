@@ -1,4 +1,5 @@
-import { KeyboardEventHandler } from "react";
+import { DocumentData } from "firebase/firestore";
+import React, { KeyboardEventHandler } from "react";
 
 
 export const handleTabToClick: KeyboardEventHandler = (event) => {
@@ -6,3 +7,8 @@ export const handleTabToClick: KeyboardEventHandler = (event) => {
     const clickEvent = new MouseEvent('onClick');
     if(code == 'Enter') {event.target.dispatchEvent(clickEvent)};
 };
+
+export interface EditorBlockProps {
+    data: DocumentData,
+    updateData: (key: string, change: any) => void
+}

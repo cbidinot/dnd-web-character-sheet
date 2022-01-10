@@ -1,0 +1,87 @@
+@use '../util.module.scss';
+@use 'sass:color';
+
+// ACTUAL EDITOR DIV ELEMENT
+
+.heading {
+    text-align: center;
+    font-size: 3rem;
+    width: fit-content;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    background-color: hsla(0deg, 0%, 0%, 25%);
+    box-shadow: -8px 8px 5px 0px hsla(0deg, 0%, 0%, 30%);
+}
+
+.editor {
+    display: flex;
+    width: 90vw;
+    margin: auto;
+
+    section {
+        width: 100%;
+    }
+}
+
+// MIXINS
+
+@mixin fullWidthFlexBlock($color: util.$secondaryColor) {
+    width: 100%;
+    display: flex;
+    background-color: $color;
+    flex-wrap: wrap;
+    padding-bottom: .5rem;
+    box-shadow: -8px 8px 5px 0px hsla(0deg, 0%, 0%, 30%);
+    justify-content: space-evenly;
+}
+
+@mixin halfWidthFlexBlock($color: util.$secondaryColor) {
+    width: 50%;
+    display: flex;
+    background-color: $color;
+    flex-wrap: wrap;
+    padding-bottom: .5rem;
+    box-shadow: -8px 8px 5px 0px hsla(0deg, 0%, 0%, 30%);
+    justify-content: space-evenly;
+}
+
+@mixin defaultInputBox {
+    all: unset;
+    box-sizing: border-box;
+    font-size: 1.3rem;
+    padding: 0 .5rem;
+    margin: 2px 2px 0 2px;
+    border-bottom: 2px solid white;
+
+    &:hover {
+        border: 2px solid white;
+        margin: 0;
+    }
+    &:focus {
+        border: 2px solid white;
+        margin: 0;    
+    }
+
+}
+
+@mixin blockHeader($color: util.$secondaryColor) {
+    width: 100%;
+    display: block;
+    margin: 0;
+    font-size: 1.3rem;
+    padding: .5rem;
+    letter-spacing: 7px;
+    background-color: color.scale($color, $lightness: -30%);
+    margin-bottom: .5rem;
+}
+
+@mixin defaultInputModule {
+    box-sizing: border-box;
+    padding: .5rem;
+
+    label {
+        text-align: center;
+        font-size: 1.3rem;
+        margin-right: .5rem;
+    }
+}

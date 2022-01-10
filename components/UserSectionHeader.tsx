@@ -23,7 +23,7 @@ const UserSectionHeader: React.FC<{ toggleDropdownFocus: ()=>void, dropdownActiv
         <div className={`${styles.userSectionHeader} ${ props.dropdownActive ? styles.arrowActive : styles.arrowUnactive }`} onMouseEnter={props.toggleDropdown} onMouseLeave={props.toggleDropdown}
          ref={node => { userSectionRef = node; }} tabIndex={0} onFocus={props.toggleDropdownFocus} onBlur={props.toggleDropdownFocus} >
             {/* <img src='/vectors/arrow.svg' className={`${styles.menuArrow} ${ props.dropdownActive ? styles.arrowActive : styles.arrowUnactive }`} />  */}
-            <img src={ user.photoURL ? user.photoURL : './pfp.png'} alt='Profile picture' className={styles.pfp} />
+            <img src={ user.photoURL ? user.photoURL : '/pfp.png'} alt='Profile picture' className={styles.pfp} />
             <span>{user.displayName ? user.displayName : 'User'}</span>
         </div>
     );

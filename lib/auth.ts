@@ -32,7 +32,7 @@ export const useAuthRequeriment = (): [(User | null | undefined), boolean] => {
 
     useEffect(() => {
         if(!(user || loading)) {
-            router.push('./login');
+            router.push('/login');
         };
     }, [user, loading]);
 

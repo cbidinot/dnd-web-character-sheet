@@ -1,0 +1,21 @@
+@use './editorUtil.module.scss';
+@use '../util.module.scss';
+
+.sheetHeader {
+    @include editorUtil.fullWidthFlexBlock;
+    margin-bottom: 1.5rem;
+
+    .header {
+        @include editorUtil.blockHeader;
+    }
+
+}
+
+.inputModule {
+
+    @include editorUtil.defaultInputModule;
+
+    input {
+        @include editorUtil.defaultInputBox;
+    }
+}
