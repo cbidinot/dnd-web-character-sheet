@@ -1,0 +1,50 @@
+@use './editorUtil.module.scss';
+@use '../util.module.scss';
+@use 'sass:color';
+
+$color: hsl(0deg, 50%, 30%);
+
+.hitpoints {
+    @include editorUtil.halfWidthFlexBlock($color);
+}
+
+.header {
+    @include editorUtil.blockHeader($color);
+    height: auto;
+}
+.inputModule {
+    @include editorUtil.defaultInputModule;
+    @include editorUtil.independentInputModule;
+
+    input {
+        @include editorUtil.defaultInputBox;
+    }
+}
+
+.hitDice {
+    box-sizing: border-box;
+    padding: .5rem;
+    background-color: hsla(0deg, 0%, 0%, 20%);
+    position: relative;
+    padding-top: 2rem;
+    outline: hsla(0deg, 0%, 0%, 30%) solid 2px;
+    margin: .5rem;
+
+    h4 {
+        position: absolute;
+        inset: 0 auto auto .5rem;
+        margin: .25rem 0;
+        font-size: 1.1rem;
+    }
+
+    label {
+        text-align: center;
+        font-size: 1rem;
+        margin-right: .2rem;
+        margin-left: .4rem;
+    }
+
+    input {
+        @include editorUtil.smallInputBox;
+    }
+}

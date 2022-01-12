@@ -12,7 +12,7 @@ const SimpleInputBox: React.FC<{hasChecks?: boolean, type?: string, name: string
     };
 
     return (<input autoComplete={props.hasChecks ? 'on' : 'off' } spellCheck={props.hasChecks ? 'true' : 'false'} autoCorrect={props.hasChecks ? 'on' : 'off' } 
-       value={props.data ? props.data : '' } type={props.type} onChange={handleChange} name={props.name} id={props.name} ></input>);
+       value={props.data ? props.data : props.data == 0 ? 0 : '' } type={props.type} onChange={handleChange} name={props.name} id={props.name} ></input>);
 };
 
 export default SimpleInputBox;

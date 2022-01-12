@@ -3,6 +3,8 @@ import { useAuthRequeriment } from "../../lib/auth";
 import { useActiveSheet } from "../../lib/characterSheet";
 import SheetHeader from '../../components/editor/SheetHeader';
 import ClassLevel from '../../components/editor/ClassLevel';
+import Hitpoints from '../../components/editor/Hitpoints';
+import RawStat from '../../components/editor/RawStats';
 
 
 export default function CharacterEditor() {
@@ -19,10 +21,10 @@ export default function CharacterEditor() {
             { isLoaded && data && <>
                 <h1 className={styles.heading}>Character Editor</h1>
                 <div className={styles.editor}>
-                    <section>
-                        <SheetHeader data={data} updateData={updateData} />
-                        <ClassLevel data={data} updateData={updateData} />
-                    </section>
+                    <SheetHeader data={data} updateData={updateData} />
+                    <ClassLevel data={data} updateData={updateData} />
+                    <Hitpoints data={data} updateData={updateData} />
+                    <RawStat data={data} updateData={updateData} />
                 </div>
             </>}
         </>);

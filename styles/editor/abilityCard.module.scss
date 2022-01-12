@@ -1,0 +1,45 @@
+@use './editorUtil.module.scss';
+@use '../util.module.scss';
+
+.abilityCard {
+    @include editorUtil.independentInputModule;
+    @include editorUtil.defaultInputModule;
+    display: block;
+
+    label {
+        display: block;
+        margin: auto;
+    }
+    span {
+        display: block;
+        text-align: center;
+        background-color: hsla(0deg, 0%, 0%, 20%);
+        width: min-content;
+        margin: auto;
+        margin-top: .5rem;
+        padding: 0 .5rem;
+        outline: 2px solid hsla(0deg, 0%, 0%, 40%);
+    }
+    
+    input {
+        all: unset;
+        display: block;
+        box-sizing: content-box;
+        font-size: 1.3rem;
+        padding: 0 .5rem;
+        margin: auto;
+        margin-top: 2px;
+        border-bottom: 2px solid white;
+        width: 3rem;
+
+        &:hover {
+            border: 2px solid white;
+            margin-top: 0;
+        
+        }
+        &:focus {
+            border: 2px solid white;
+            margin-top: 0;
+        }
+    }
+}

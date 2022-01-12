@@ -14,6 +14,7 @@
 .inputModule {
 
     @include editorUtil.defaultInputModule;
+    @include editorUtil.independentInputModule;
 
     input {
         @include editorUtil.defaultInputBox;

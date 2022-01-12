@@ -10,5 +10,5 @@ export const handleTabToClick: KeyboardEventHandler = (event) => {
 
 export interface EditorBlockProps {
     data: DocumentData,
-    updateData: (key: string, change: any) => void
+    updateData: (key: string, change: any, objectPath?: string) => void
 }

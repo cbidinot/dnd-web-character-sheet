@@ -6,7 +6,6 @@ $color: color.scale(util.$mainColor, $lightness: -5%);
 
 .classLevel {
     @include editorUtil.halfWidthFlexBlock($color);
-    margin-bottom: 5rem;
 
     .header {
         @include editorUtil.blockHeader($color)
@@ -17,6 +16,7 @@ $color: color.scale(util.$mainColor, $lightness: -5%);
 
 .inputModule {
     @include editorUtil.defaultInputModule;
+    @include editorUtil.independentInputModule;
 
     input {
         @include editorUtil.defaultInputBox;
@@ -25,13 +25,13 @@ $color: color.scale(util.$mainColor, $lightness: -5%);
 
 #singleNumber {
     input {
-        width: 3rem;
-        box-sizing: content-box;
+        @include editorUtil.smallInputBox;
     }
 }
 
 .checkmarkSelectors {
     @include editorUtil.defaultInputModule;
+    @include editorUtil.independentInputModule;
     display: flex;
     input {
         cursor: pointer;

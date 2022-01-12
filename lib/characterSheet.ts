@@ -24,8 +24,12 @@ export const useActiveSheet = (): [ DocumentData | undefined, boolean, string | 
         } else if(user) setException('missing query');
     }, [router.query, user]);
 
-    const updateData = (key: string, change: any) => {
-        setData({...data, [key]: change})
+    const updateData = (key: string, change: any, objectPath?: string) => {
+        if(!objectPath) {
+            setData({...data, [key]: change});
+        } else if(objectPath && data) {
+            setData({...data, [objectPath]: {...data[objectPath], [key]: change }});
+        }
     };
 
     useEffect(() => {

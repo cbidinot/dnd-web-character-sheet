@@ -17,10 +17,10 @@
     display: flex;
     width: 90vw;
     margin: auto;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
 
-    section {
-        width: 100%;
-    }
 }
 
 // MIXINS
@@ -36,7 +36,7 @@
 }
 
 @mixin halfWidthFlexBlock($color: util.$secondaryColor) {
-    width: 50%;
+    width: 49%;
     display: flex;
     background-color: $color;
     flex-wrap: wrap;
@@ -78,10 +78,36 @@
 @mixin defaultInputModule {
     box-sizing: border-box;
     padding: .5rem;
+    margin: .5rem;
 
     label {
         text-align: center;
         font-size: 1.3rem;
         margin-right: .5rem;
     }
+}
+
+@mixin smallInputBox {
+    all: unset;
+    box-sizing: content-box;
+    font-size: 1.3rem;
+    padding: 0 .5rem;
+    margin: 2px 2px 0 2px;
+    border-bottom: 2px solid white;
+    width: 3rem;
+
+    &:hover {
+        border: 2px solid white;
+        margin: 0;
+    }
+    &:focus {
+        border: 2px solid white;
+        margin: 0;    
+    }
+
+}
+
+@mixin independentInputModule {
+    outline: hsla(0deg, 0%, 0%, 30%) solid 2px;
+    background-color: hsla(0deg, 0%, 0%, 20%);
 }

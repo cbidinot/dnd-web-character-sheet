@@ -1,0 +1,54 @@
+@use './editorUtil.module.scss';
+@use '../util.module.scss';
+
+.rawStats {
+    @include editorUtil.fullWidthFlexBlock();
+    margin-top: 2rem;
+    margin-bottom: 22rem;
+}
+
+.inputModule {
+    @include editorUtil.defaultInputModule();
+    @include editorUtil.independentInputModule();
+    
+    input {
+        @include editorUtil.smallInputBox();
+    }
+}
+
+.header {
+    @include editorUtil.blockHeader();
+}
+
+.abilities {
+    display: flex;
+    width: 95%;
+    padding: 2%;
+    background-color: hsla(0deg, 0%, 0%, 10%);
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    position: relative;
+    padding-top: 3.5rem;
+    margin: .5rem 0;
+
+    h4 {
+        font-size: 1.3rem;
+        padding: .5rem;
+        letter-spacing: 7px;
+        position: absolute;
+        inset: 0 auto auto 0;
+        margin: 0;
+        background-color: hsla(0deg, 0%, 0%, 10%);
+    }
+}
+
+#inspiration {
+    @include editorUtil.defaultInputModule();
+    @include editorUtil.independentInputModule();
+    input {
+       width: 1.5rem;
+       height: 1.5rem;
+       position: relative;
+       top: .25rem;
+    }
+}
