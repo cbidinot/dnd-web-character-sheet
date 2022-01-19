@@ -14,7 +14,7 @@ export default function NewCharacter() {
     const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault();
         if(user && data) {
-            setData({...data, multiclass: false}) 
+            setData({...data, multiclass: false, skillProficiencies: [], savingThrowProficiencies: []}) 
             initCharacter(user.uid, data)
                 .then((id) => {
                     if(id) {

@@ -20,13 +20,12 @@
 }
 
 .characterCard {
-    background-color: hsla(0deg, 0%, 0%, 20%);
+    @include editorUtil.independentInputModule;
     margin: .25rem;
     margin-bottom: .5rem;
     padding: 0 .25rem .25rem;
     box-sizing: border-box;
     position: relative;
-    outline: hsla(0deg, 0%, 0%, 30%) solid 2px;
     
 }
 .delete {

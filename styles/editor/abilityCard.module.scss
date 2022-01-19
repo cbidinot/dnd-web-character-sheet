@@ -5,6 +5,8 @@
     @include editorUtil.independentInputModule;
     @include editorUtil.defaultInputModule;
     display: block;
+    flex-grow: 1;
+    flex-basis: 15%;
 
     label {
         display: block;

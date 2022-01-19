@@ -6,7 +6,6 @@ export const initCharacter = async (userId: string, data: DocumentData) => {
     const timeout = new Promise((resolve, reject) => {
         setTimeout(() => {reject('Request timeout, pleace check your network connection')}, 20000)
     });
-    console.log({...data, uid: userId})
     const test = addDoc(path, {...data, uid: userId});
 
     try {

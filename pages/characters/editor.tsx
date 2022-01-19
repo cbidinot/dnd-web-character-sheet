@@ -5,6 +5,7 @@ import SheetHeader from '../../components/editor/SheetHeader';
 import ClassLevel from '../../components/editor/ClassLevel';
 import Hitpoints from '../../components/editor/Hitpoints';
 import RawStat from '../../components/editor/RawStats';
+import Proficiencies from '../../components/editor/Proficiencies';
 
 
 export default function CharacterEditor() {
@@ -25,6 +26,7 @@ export default function CharacterEditor() {
                     <ClassLevel data={data} updateData={updateData} />
                     <Hitpoints data={data} updateData={updateData} />
                     <RawStat data={data} updateData={updateData} />
+                    <Proficiencies data={data} updateData={updateData} />
                 </div>
             </>}
         </>);

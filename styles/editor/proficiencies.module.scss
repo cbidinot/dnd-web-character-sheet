@@ -1,0 +1,26 @@
+@use './editorUtil.module.scss';
+@use '../util.module.scss';
+
+.proficiencies {
+    @include editorUtil.fullWidthFlexBlock;
+    margin-top: 2rem;
+    margin-bottom: 22rem;
+}
+
+.header {
+    @include editorUtil.blockHeader;
+}
+
+.subsection {
+    @include editorUtil.subsection;
+}
+
+.inputModule {
+    @include editorUtil.defaultInputModule;
+    @include editorUtil.independentInputModule;
+    flex-grow: 0;
+   
+    input {
+        @include editorUtil.defaultInputBox;
+    }
+}

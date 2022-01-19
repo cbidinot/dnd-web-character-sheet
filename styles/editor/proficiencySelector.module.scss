@@ -1,0 +1,14 @@
+@use './editorUtil.module.scss';
+@use '../util.module.scss';
+
+.inputModule {
+    @include editorUtil.defaultInputModule;
+    @include editorUtil.independentInputModule;
+
+    input {
+        cursor: pointer;
+        width: 1rem;
+        height: 1rem;
+        margin-right: 2rem;
+    }
+}

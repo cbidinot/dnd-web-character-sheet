@@ -12,3 +12,5 @@ export interface EditorBlockProps {
     data: DocumentData,
     updateData: (key: string, change: any, objectPath?: string) => void
 }
+
+export const skills = null;
